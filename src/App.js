@@ -47,13 +47,29 @@ class App extends React.Component {
     })
   }
 
+  // Ajoute une tâche
+
+  addTodo = (title) => {
+    const newTodo = {
+      id: this.state.todos.length + 1,
+      title,
+      completed: false
+    }
+    this.setState({
+      todos: [...this.state.todos, newTodo]
+    })
+  }
+
 
   render() {
     return (
       <div className="App">
-        <Header></Header>
-        <AddTodo />
-        <Todos todos={this.state.todos} markComplete={this.markComplete} delTodo={this.delTodo} />
+        <div className="container">
+          <Header></Header>
+          <AddTodo addTodo={this.addTodo} />
+          <Todos todos={this.state.todos} markComplete={this.markComplete} delTodo={this.delTodo} />
+        </div>
+
       </div>
     );
   }
